@@ -23,21 +23,12 @@
 <!ENTITY RFC8639 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8639.xml">
 <!ENTITY RFC8641 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8641.xml">
 
-
-<!--<!ENTITY I-D.draft-lhotka-netmod-yang-json SYSTEM
-  "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-lhotka-netmod-yang-json-01.xml">
--->
-<!--
-<!ENTITY I-D.draft-ietf-netmod-interfaces-cfg SYSTEM
-  "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-interfaces-cfg-12.xml">
--->
 ]>
 <?rfc toc="yes"?>
 <?rfc rfcedstyle="yes"?>
 <?rfc subcompact="no" ?>
 <?rfc symrefs="yes"?>
-<rfc category="exp" docName="draft-clemm-netmod-peermount-00.txt"
-     ipr="pre5378Trust200902">
+<rfc category="exp" docName="draft-clemm-netmod-peermount-00" ipr="trust200902">
   <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 
   <?rfc toc="yes" ?>
