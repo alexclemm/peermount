@@ -3,18 +3,19 @@
 <!-- One method to get references from the online citation libraries.
     There has to be one entity for each item to be referenced.
     An alternate method (rfc include) is described in the references. -->
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2131 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2131.xml">
 <!ENTITY RFC2866 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2866.xml">
-<!ENTITY RFC3768 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3768.xml">
 <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
+<!ENTITY RFC5798 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5798.xml">
 <!ENTITY RFC6241 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6241.xml">
-<!ENTITY RFC6536 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6536.xml">
-<!ENTITY RFC7223 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
 <!ENTITY RFC7950 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7950.xml">
-<!ENTITY RFC7951 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7951.xml">
 <!ENTITY RFC8040 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8040.xml">
+<!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC8340 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8340.xml">
+<!ENTITY RFC8341 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8341.xml">
 <!ENTITY RFC8342 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8342.xml">
+<!ENTITY RFC8343 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
 <!ENTITY RFC8345 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8345.xml">
 <!ENTITY RFC8526 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8526.xml">
 <!ENTITY RFC8527 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8527.xml">
@@ -102,7 +103,6 @@
       </t>
       <t>
       The concept of Peer-Mount was first introduced in an earlier Internet Draft 
-      <xref target="I-D.clemm-netmod-mount"/>
       that was no longer pursued due to lack of interest at the time.  
       It is being revived now in light of renewed IETF interest in network inventory, network topology, 
       and related use cases, 
@@ -357,6 +357,15 @@
       </section>
     </section>
 
+ <section title="Key Words">
+   <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+      "MAY", and "OPTIONAL" in this document are to be interpreted as
+      described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> 
+      when, and only when, theyappear in all capitals, as shown here.
+   </t>
+   </section>
+   
     <section title="Definitions and Acronyms">
       <t>Data node: An instance of management information in a YANG
       datastore.</t>
@@ -415,7 +424,7 @@
         consolidated view of management information across the network. This
         allows network controllers to expose network-wide abstractions, such
         as topologies or paths, multi-device abstractions, such as VRRP <xref
-        target="RFC3768"/>, and network-element specific abstractions, such as
+        target="RFC5798"/>, and network-element specific abstractions, such as
         information about a network element's interfaces.</t>
 
         <t>Without a mounting capability, a network controller would need to
@@ -1301,7 +1310,7 @@ module ietf-peermount {
           To the mounted system, a mounting client will in general appear like
           any other client. Authorization privileges for remote mounting
           clients need to be specified through NACM (NETCONF Access Control
-          Model) <xref target="RFC6536"/>.</t>
+          Model) <xref target="RFC8341"/>.</t>
         </section>
 
         <section title="Datastore qualification">
@@ -1468,17 +1477,19 @@ module ietf-peermount {
   <back>
     <references title="Normative References">
 
+      &RFC2119;
+      
       &RFC3986;
 
       &RFC6241;
 
-      &RFC6536;
-
       &RFC7950;
-            
-      &RFC7951;
       
       &RFC8040;
+      
+      &RFC8174;
+
+      &RFC8341;
       
       &RFC8342;
       
@@ -1495,13 +1506,13 @@ module ietf-peermount {
     &RFC2131;
 
     &RFC2866;
-          
-    &RFC3768;
-      
-    &RFC7223;
-          
+
+    &RFC5798;
+                    
     &RFC8340;
       
+    &RFC8343;      
+    
     &RFC8345;
      
     &RFC8528;
@@ -1511,7 +1522,7 @@ module ietf-peermount {
     &RFC8641;
       
     
-    <reference anchor="I-D.wzwb-opsawg-network-inventory-management" target="https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-02">
+    <reference anchor="I-D.wzwb-opsawg-network-inventory-management" target="https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-03">
         <front>
             <title>An Inventory Management Model for Enterprise Networks</title>
             <author initials="B." surname="Wu" fullname="Bo Wu">
@@ -1522,9 +1533,9 @@ module ietf-peermount {
             </author>
             <author initials="M." surname="Boucadair" fullname="Mohamed Boucadair">
             </author>
-            <date month="July" day="10" year="2023"/>
+            <date month="July" day="24" year="2023"/>
         </front>
-        <seriesInfo name="Internet-Draft" value="draft-wzwb-opsawg-network-inventory-management-02"/>
+        <seriesInfo name="Internet-Draft" value="draft-wzwb-opsawg-network-inventory-management-03"/>
     </reference>
     
     <reference anchor="I-D.clemm-netmod-mount" target="https://datatracker.ietf.org/doc/html/draft-clemm-netmod-mount-06">

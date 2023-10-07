@@ -33,13 +33,12 @@ Abstract
    nodes that comprise it.
 
    The concept of Peer-Mount was first introduced in an earlier Internet
-   Draft [I-D.clemm-netmod-mount] that was no longer pursued due to lack
-   of interest at the time.  It is being revived now in light of renewed
-   IETF interest in network inventory, network topology, and related use
-   cases, for which Peer-Mount is of specific interest.  Other concepts
-   defined in the earlier draft, notably Alias-Mount, are not considered
-   here since they provide other capabilities that are less applicable
-   to those topics.
+   Draft that was no longer pursued due to lack of interest at the time.
+   It is being revived now in light of renewed IETF interest in network
+   inventory, network topology, and related use cases, for which Peer-
+   Mount is of specific interest.  Other concepts defined in the earlier
+   draft, notably Alias-Mount, are not considered here since they
+   provide other capabilities that are less applicable to those topics.
 
 Status of This Memo
 
@@ -50,6 +49,7 @@ Status of This Memo
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
    Drafts is at https://datatracker.ietf.org/drafts/current/.
+
 
 
 
@@ -99,13 +99,13 @@ Table of Contents
      1.3.  Restrictions and possible future extensions . . . . . . .   5
      1.4.  Differentiation from other work . . . . . . . . . . . . .   5
      1.5.  Example uses  . . . . . . . . . . . . . . . . . . . . . .   6
-   2.  Definitions and Acronyms  . . . . . . . . . . . . . . . . . .   8
-   3.  Example scenarios . . . . . . . . . . . . . . . . . . . . . .   9
-     3.1.  Network controller view, network topology, network
-           inventory . . . . . . . . . . . . . . . . . . . . . . . .   9
-     3.2.  Consistent network configuration  . . . . . . . . . . . .  11
-   4.  Operating on mounted data . . . . . . . . . . . . . . . . . .  13
-     4.1.  General principles  . . . . . . . . . . . . . . . . . . .  13
+   2.  Key Words . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+   3.  Definitions and Acronyms  . . . . . . . . . . . . . . . . . .   8
+   4.  Example scenarios . . . . . . . . . . . . . . . . . . . . . .   9
+     4.1.  Network controller view, network topology, network
+           inventory . . . . . . . . . . . . . . . . . . . . . . . .  10
+     4.2.  Consistent network configuration  . . . . . . . . . . . .  12
+   5.  Operating on mounted data . . . . . . . . . . . . . . . . . .  13
 
 
 
@@ -114,29 +114,30 @@ Clemm, et al.             Expires 8 April 2024                  [Page 2]
 Internet-Draft                 Peer-Mount                   October 2023
 
 
-     4.2.  Data retrieval  . . . . . . . . . . . . . . . . . . . . .  14
-     4.3.  Operations beyond data retrieval  . . . . . . . . . . . .  14
-     4.4.  Other operational considerations  . . . . . . . . . . . .  15
-   5.  Data model structure  . . . . . . . . . . . . . . . . . . . .  16
-     5.1.  YANG mountpoint extensions  . . . . . . . . . . . . . . .  16
-     5.2.  YANG structure diagrams . . . . . . . . . . . . . . . . .  17
-     5.3.  Mountpoint management . . . . . . . . . . . . . . . . . .  18
-   6.  Datastore mountpoint YANG module  . . . . . . . . . . . . . .  20
-   7.  Other considerations  . . . . . . . . . . . . . . . . . . . .  28
-     7.1.  Authorization . . . . . . . . . . . . . . . . . . . . . .  28
-     7.2.  Datastore qualification . . . . . . . . . . . . . . . . .  28
-     7.3.  Mount cascades  . . . . . . . . . . . . . . . . . . . . .  29
-     7.4.  Mountpoint status . . . . . . . . . . . . . . . . . . . .  29
-     7.5.  Caching . . . . . . . . . . . . . . . . . . . . . . . . .  29
-     7.6.  Filtering . . . . . . . . . . . . . . . . . . . . . . . .  30
-     7.7.  Implementation considerations beyond caching  . . . . . .  30
-     7.8.  Modeling best practices . . . . . . . . . . . . . . . . .  31
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  32
-   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  32
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  32
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  32
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  33
+     5.1.  General principles  . . . . . . . . . . . . . . . . . . .  13
+     5.2.  Data retrieval  . . . . . . . . . . . . . . . . . . . . .  14
+     5.3.  Operations beyond data retrieval  . . . . . . . . . . . .  14
+     5.4.  Other operational considerations  . . . . . . . . . . . .  15
+   6.  Data model structure  . . . . . . . . . . . . . . . . . . . .  16
+     6.1.  YANG mountpoint extensions  . . . . . . . . . . . . . . .  16
+     6.2.  YANG structure diagrams . . . . . . . . . . . . . . . . .  17
+     6.3.  Mountpoint management . . . . . . . . . . . . . . . . . .  18
+   7.  Datastore mountpoint YANG module  . . . . . . . . . . . . . .  20
+   8.  Other considerations  . . . . . . . . . . . . . . . . . . . .  28
+     8.1.  Authorization . . . . . . . . . . . . . . . . . . . . . .  28
+     8.2.  Datastore qualification . . . . . . . . . . . . . . . . .  28
+     8.3.  Mount cascades  . . . . . . . . . . . . . . . . . . . . .  29
+     8.4.  Mountpoint status . . . . . . . . . . . . . . . . . . . .  29
+     8.5.  Caching . . . . . . . . . . . . . . . . . . . . . . . . .  29
+     8.6.  Filtering . . . . . . . . . . . . . . . . . . . . . . . .  30
+     8.7.  Implementation considerations beyond caching  . . . . . .  30
+     8.8.  Modeling best practices . . . . . . . . . . . . . . . . .  31
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  32
+   11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  32
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  32
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  32
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  33
    Appendix A.  Open issues  . . . . . . . . . . . . . . . . . . . .  35
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
 
@@ -161,7 +162,6 @@ Internet-Draft                 Peer-Mount                   October 2023
    primitives.  Peer-Mount allows a server to effectively provide a
    federated datastore that includes YANG data from across the
    network.The concept is reminiscent of concepts in a Network File
-   System that allows to mount remote folders and make them appear as if
 
 
 
@@ -170,6 +170,7 @@ Clemm, et al.             Expires 8 April 2024                  [Page 3]
 Internet-Draft                 Peer-Mount                   October 2023
 
 
+   System that allows to mount remote folders and make them appear as if
    they were contained in the local file system of the user's machine.
 
 1.2.  Background and history
@@ -216,7 +217,6 @@ Internet-Draft                 Peer-Mount                   October 2023
    introduced here as a separate feature as it does not contribute to
    the ability to provide a federated datastore providing a holistic
    network-wide view, the property that is of interest here.
-
 
 
 
@@ -429,19 +429,19 @@ Internet-Draft                 Peer-Mount                   October 2023
    network.  Only retrieval operations are required; no operations that
    involve configuring remote data are involved.
 
-2.  Definitions and Acronyms
+2.  Key Words
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, theyappear in all
+   capitals, as shown here.
+
+3.  Definitions and Acronyms
 
    Data node: An instance of management information in a YANG datastore.
 
    DHCP: Dynamic Host Configuration Protocol.
-
-   Datastore: A conceptual store of instantiated management information,
-   with individual data items represented by data nodes which are
-   arranged in hierarchical manner.
-
-   Data subtree: An instantiated data node and the data nodes that are
-   hierarchically contained within it.
-
 
 
 
@@ -449,6 +449,13 @@ Clemm, et al.             Expires 8 April 2024                  [Page 8]
 
 Internet-Draft                 Peer-Mount                   October 2023
 
+
+   Datastore: A conceptual store of instantiated management information,
+   with individual data items represented by data nodes which are
+   arranged in hierarchical manner.
+
+   Data subtree: An instantiated data node and the data nodes that are
+   hierarchically contained within it.
 
    Mount client: The system at which the mount point resides, into which
    the remote subtree is mounted.
@@ -480,13 +487,26 @@ Internet-Draft                 Peer-Mount                   October 2023
    from a datastore, which are then automatically pushed by the server
    to the client.
 
-3.  Example scenarios
+4.  Example scenarios
 
    The following example scenarios outline some of the ways in which the
    ability to mount YANG datastores can be applied.  Other mount
    topologies can be conceived in addition to the ones presented here.
 
-3.1.  Network controller view, network topology, network inventory
+
+
+
+
+
+
+
+
+Clemm, et al.             Expires 8 April 2024                  [Page 9]
+
+Internet-Draft                 Peer-Mount                   October 2023
+
+
+4.1.  Network controller view, network topology, network inventory
 
    The need to maintain a network inventory is a requirement for many
    applications, for example applications that expect to operate on a
@@ -495,16 +515,9 @@ Internet-Draft                 Peer-Mount                   October 2023
    generally, presenting a consolidated view of management information
    across the network.  This allows network controllers to expose
    network-wide abstractions, such as topologies or paths, multi-device
-   abstractions, such as VRRP [RFC3768], and network-element specific
+   abstractions, such as VRRP [RFC5798], and network-element specific
    abstractions, such as information about a network element's
    interfaces.
-
-
-
-Clemm, et al.             Expires 8 April 2024                  [Page 9]
-
-Internet-Draft                 Peer-Mount                   October 2023
-
 
    Without a mounting capability, a network controller would need to at
    least conceptually replicate data from network elements to provide
@@ -540,6 +553,15 @@ Internet-Draft                 Peer-Mount                   October 2023
    be redundantly defined, once for the YANG data model at the "system"
    level, a second time at the network inventory level.
 
+
+
+
+
+Clemm, et al.             Expires 8 April 2024                 [Page 10]
+
+Internet-Draft                 Peer-Mount                   October 2023
+
+
    By allowing a network controller (or other system maintaining a
    network inventory) to use Peer-Mount and directly mount information
    from network element datastores, the controller does not need to
@@ -554,13 +576,6 @@ Internet-Draft                 Peer-Mount                   October 2023
    a different network element's datastore.  The data from the mounted
    subtrees is then accessible to clients of the primary datastore using
    the usual data retrieval operations.
-
-
-
-Clemm, et al.             Expires 8 April 2024                 [Page 10]
-
-Internet-Draft                 Peer-Mount                   October 2023
-
 
    This scenario is depicted in Figure 1.  In the figure, a Network
    Controller Datastore contains a network inventory rooted in Ninv.
@@ -595,9 +610,17 @@ Internet-Draft                 Peer-Mount                   October 2023
                          |   Datastore   |         |   Datastore   |
                          +---------------+         +---------------+
 
+
+
+
+Clemm, et al.             Expires 8 April 2024                 [Page 11]
+
+Internet-Draft                 Peer-Mount                   October 2023
+
+
                 Figure 1: Network controller mount topology
 
-3.2.  Consistent network configuration
+4.2.  Consistent network configuration
 
    While network inventory serves as a primary motivator for the
    introduction of Peer-Mount, it can be used also for other
@@ -609,14 +632,6 @@ Internet-Draft                 Peer-Mount                   October 2023
    only redundant but, more importantly, error-prone.  Inconsistent
    configurations lead to erroneous network behavior that can be
    challenging to troubleshoot.
-
-
-
-
-Clemm, et al.             Expires 8 April 2024                 [Page 11]
-
-Internet-Draft                 Peer-Mount                   October 2023
-
 
    Using the ability to mount information from remote datastores opens
    up a new possibility for managing such settings.  Instead of
@@ -642,21 +657,6 @@ Internet-Draft                 Peer-Mount                   October 2023
    settings.  (Note that there is no reason why the Network Controller
    Datastore in this figure could not simply reside on a network element
    itself; the division of responsibilities is a logical one.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -704,12 +704,12 @@ Internet-Draft                 Peer-Mount                   October 2023
 
                Figure 2: Distributed config settings topology
 
-4.  Operating on mounted data
+5.  Operating on mounted data
 
    This section provides a rough illustration of the operations flow
    involving mounted datastores.
 
-4.1.  General principles
+5.1.  General principles
 
    The first thing that should be noted about these operations flows
    concerns the fact that a mount client essentially constitutes a
@@ -747,7 +747,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    local data tree structure, and combine those results with the results
    of the remainder portion of the original request.
 
-4.2.  Data retrieval
+5.2.  Data retrieval
 
    Data retrieval operations are the only category of operations that is
    supported for peer-mounted information.  In that case, a Netconf
@@ -770,7 +770,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    PERHAPS ONLY "GET" SHOULD BE SUPPORTED, WITH "GET-CONFIG" IGNORING
    ANY MOUNTED INFORMATION.
 
-4.3.  Operations beyond data retrieval
+5.3.  Operations beyond data retrieval
 
    TBD: SHOULD/MUST LANGUAGE.
 
@@ -820,7 +820,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    capability, definition of which is once again outside the scope of
    this specification.
 
-4.4.  Other operational considerations
+5.4.  Other operational considerations
 
    Since mounting of information typically involves communication with a
    remote system, there is a possibility that the remote system will not
@@ -829,7 +829,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    datastores also involves mountpoint management, which includes the
    ability to configure timeouts, retries, and management of mountpoint
    state (including dynamic addition removal of mountpoints).
-   Mountpoint management will be discussed in section Section 5.3.
+   Mountpoint management will be discussed in section Section 6.3.
 
    It is expected that some implementations will introduce caching
    schemes.  Caching can increase performance and efficiency in certain
@@ -851,11 +851,11 @@ Internet-Draft                 Peer-Mount                   October 2023
    When caching is supported by an implementation, it can benefit from
    the ability to subscribe to updates on remote data by remote servers.
    Some optimizations to facilitate caching support will be discussed in
-   section Section 7.5.
+   section Section 8.5.
 
-5.  Data model structure
+6.  Data model structure
 
-5.1.  YANG mountpoint extensions
+6.1.  YANG mountpoint extensions
 
    At the center of the module is a set of YANG extensions that allow to
    define a mountpoint in a YANG data model.
@@ -935,7 +935,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    Whenever a mount operation is performed, this condition MUST be
    validated by the mount client.
 
-5.2.  YANG structure diagrams
+6.2.  YANG structure diagrams
 
    YANG tree diagrams [RFC8340] have proven very useful to convey the
    "Big Picture".  It would be useful to indicate in YANG tree diagrams
@@ -965,7 +965,7 @@ Internet-Draft                 Peer-Mount                   October 2023
 
                Figure 3: Mountpoint structure diagram example
 
-5.3.  Mountpoint management
+6.3.  Mountpoint management
 
    In addition to allowing to define mountpoints, the YANG module also
    contains facilities to manage the mountpoints themselves.
@@ -1094,7 +1094,7 @@ Internet-Draft                 Peer-Mount                   October 2023
             +--rw retry-timer?         uint16
             +--rw number-of-retries?   uint8
 
-6.  Datastore mountpoint YANG module
+7.  Datastore mountpoint YANG module
 
    <CODE BEGINS> file "ietf-peermount@20231006.yang"
    module ietf-peermount {
@@ -1544,17 +1544,17 @@ Internet-Draft                 Peer-Mount                   October 2023
    }
    <CODE ENDS>
 
-7.  Other considerations
+8.  Other considerations
 
-7.1.  Authorization
+8.1.  Authorization
 
    Access to mounted information is subject to authorization rules.  To
    the mounted system, a mounting client will in general appear like any
    other client.  Authorization privileges for remote mounting clients
    need to be specified through NACM (NETCONF Access Control Model)
-   [RFC6536].
+   [RFC8341].
 
-7.2.  Datastore qualification
+8.2.  Datastore qualification
 
    It is conceivable to differentiate between different datastores on
    the remote server, that is, to designate the name of the actual
@@ -1574,7 +1574,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    mount does constitute configuration and can hence be part of a
    startup or candidate datastore.
 
-7.3.  Mount cascades
+8.3.  Mount cascades
 
    It is possible for the mounted subtree to in turn contain a
    mountpoint.  However, circular mount relationships MUST NOT be
@@ -1584,7 +1584,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    mountpoint.  As part of a mount operation, the mount points of the
    mounted system need to be checked accordingly.
 
-7.4.  Mountpoint status
+8.4.  Mountpoint status
 
    It is possible that a mountpoint is broken.  For example, a remote
    system could be unreachable due to many reasons, such as
@@ -1599,7 +1599,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    MOUNTPOINT STATUS THAT CAN BE RETURNED WITH THE DATA NODE
    REPRESENTING THE MOUNTPOINT.
 
-7.5.  Caching
+8.5.  Caching
 
    Under certain circumstances, it can be useful to maintain a cache of
    remote information.  Instead of accessing the remote system, requests
@@ -1633,7 +1633,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    remote system for the mounted data and updating the local cache as
    updates are received.
 
-7.6.  Filtering
+8.6.  Filtering
 
    It is conceivable to add a mechanism that allows to limit the data in
    a mounted subtree that would be returned as part of retrieval
@@ -1652,7 +1652,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    which is already supported by standard Netconf and RESTCONF
    operations is therefore not included.
 
-7.7.  Implementation considerations beyond caching
+8.7.  Implementation considerations beyond caching
 
    Implementation specifics are outside the scope of this specification.
    That said, the following considerations apply:
@@ -1712,7 +1712,7 @@ Internet-Draft                 Peer-Mount                   October 2023
    association (e.g., a single Netconf session) per target system, as
    opposed to maintaining a separate association for each mountpoint.
 
-7.8.  Modeling best practices
+8.8.  Modeling best practices
 
    There is a certain amount of overhead associated with each mount
    point.  The mount point needs to be managed and state maintained.
@@ -1751,21 +1751,26 @@ Internet-Draft                 Peer-Mount                   October 2023
    nodes contained underneath choices, a mountpoint should refer to a
    container of the choice.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    TBD
 
-9.  Security Considerations
+10.  Security Considerations
 
    TBD
 
-10.  Acknowledgements
+11.  Acknowledgements
 
    TBD
 
-11.  References
+12.  References
 
-11.1.  Normative References
+12.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
@@ -1776,11 +1781,6 @@ Internet-Draft                 Peer-Mount                   October 2023
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
               <https://www.rfc-editor.org/info/rfc6241>.
-
-   [RFC6536]  Bierman, A. and M. Bjorklund, "Network Configuration
-              Protocol (NETCONF) Access Control Model", RFC 6536,
-              DOI 10.17487/RFC6536, March 2012,
-              <https://www.rfc-editor.org/info/rfc6536>.
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
@@ -1794,13 +1794,18 @@ Clemm, et al.             Expires 8 April 2024                 [Page 32]
 Internet-Draft                 Peer-Mount                   October 2023
 
 
-   [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
-              RFC 7951, DOI 10.17487/RFC7951, August 2016,
-              <https://www.rfc-editor.org/info/rfc7951>.
-
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/info/rfc8040>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/info/rfc8341>.
 
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
@@ -1819,7 +1824,7 @@ Internet-Draft                 Peer-Mount                   October 2023
               DOI 10.17487/RFC8527, March 2019,
               <https://www.rfc-editor.org/info/rfc8527>.
 
-11.2.  Informative References
+12.2.  Informative References
 
    [I-D.clemm-netmod-mount]
               Clemm, A., Voit, E., and J. Medved, "Mounting YANG-Defined
@@ -1836,11 +1841,6 @@ Internet-Draft                 Peer-Mount                   October 2023
               twin-arch-03, 27 April 2023,
               <https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-
               network-digital-twin-arch-03>.
-
-
-
-
-
 
 
 
@@ -1862,9 +1862,9 @@ Internet-Draft                 Peer-Mount                   October 2023
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "An Inventory
               Management Model for Enterprise Networks", Work in
               Progress, Internet-Draft, draft-wzwb-opsawg-network-
-              inventory-management-02, 10 July 2023,
+              inventory-management-03, 24 July 2023,
               <https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-
-              network-inventory-management-02>.
+              network-inventory-management-03>.
 
    [RFC2131]  Droms, R., "Dynamic Host Configuration Protocol",
               RFC 2131, DOI 10.17487/RFC2131, March 1997,
@@ -1874,9 +1874,10 @@ Internet-Draft                 Peer-Mount                   October 2023
               DOI 10.17487/RFC2866, June 2000,
               <https://www.rfc-editor.org/info/rfc2866>.
 
-   [RFC3768]  Hinden, R., Ed., "Virtual Router Redundancy Protocol
-              (VRRP)", RFC 3768, DOI 10.17487/RFC3768, April 2004,
-              <https://www.rfc-editor.org/info/rfc3768>.
+   [RFC5798]  Nadas, S., Ed., "Virtual Router Redundancy Protocol (VRRP)
+              Version 3 for IPv4 and IPv6", RFC 5798,
+              DOI 10.17487/RFC5798, March 2010,
+              <https://www.rfc-editor.org/info/rfc5798>.
 
    [RFC7223]  Bjorklund, M., "A YANG Data Model for Interface
               Management", RFC 7223, DOI 10.17487/RFC7223, May 2014,
@@ -1894,7 +1895,6 @@ Internet-Draft                 Peer-Mount                   October 2023
    [RFC8528]  Bjorklund, M. and L. Lhotka, "YANG Schema Mount",
               RFC 8528, DOI 10.17487/RFC8528, March 2019,
               <https://www.rfc-editor.org/info/rfc8528>.
-
 
 
 
